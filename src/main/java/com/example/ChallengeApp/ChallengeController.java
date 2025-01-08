@@ -7,31 +7,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@RestController //handling HTTP requests and returning JSON responses. Marks the class as a REST controller, capable of handling HTTP requests.
 public class ChallengeController {
-    //private List<Challenge> challenges = new ArrayList<>();
     private ChallengeService challengeService;
 
-    public ChallengeController(ChallengeService challengeService) {
-//        Challenge c1 = new Challenge(1L , "Jan" , "Go to Gym");
-//        challenges.add(c1);
+    public ChallengeController(ChallengeService challengeService) {  //Constructor Injection: Spring injects the ChallengeService instance into the controller when the application starts. This is a common way to inject dependencies in Spring.
         this.challengeService = challengeService;
-        //challengeService = new ChallengeService();
     }
 
-     //
 
     @GetMapping("/challenges")
     public ResponseEntity<List<Challenge>> getChallenges(){
-        //return challenges;
         return  new ResponseEntity<>(challengeService.getCahllenges(),HttpStatus.OK);
     }
 
     @GetMapping("/challenges/{month}")
-    public ResponseEntity<Challenge> getChallenges(@PathVariable String month){
-        //return challenges;
-//        return challengeService.getCahllenges();
-//        return challengeService.getCahllenge(month);
+    public ResponseEntity<Challenge> getChallenges(@PathVariable String month){ //@pathVariable - Captures the month variable from the URL.
         Challenge ch = challengeService.getChallenge(month);
         if(ch != null){
             return new ResponseEntity<> (ch , HttpStatus.OK);
@@ -42,7 +33,7 @@ public class ChallengeController {
     }
 
     @PostMapping("/challenges") // has request body..
-    public ResponseEntity<String> addChallenge(@RequestBody Challenge challenge){
+    public ResponseEntity<String> addChallenge(@RequestBody Challenge challenge){ //@RequestBody - Binds the request body to a Challenge object. fromuser input 
         boolean isChallengeAdded =  challengeService.addChallenge(challenge);
         if(isChallengeAdded)
             return new ResponseEntity<>("Challenge added succesfully", HttpStatus.OK);
