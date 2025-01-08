@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service // @Service Indicates that this class contains business logic.
 public class ChallengeService {
     private long nextId =  2 ;
     private List<Challenge> challenges = new ArrayList<>();
@@ -19,7 +19,7 @@ public class ChallengeService {
         return challenges;
     }
 
-    public boolean addChallenge(Challenge cchallenge) {
+    public boolean addChallenge(Challenge cchallenge) { //from @RequestBody
         if (cchallenge != null) {
             cchallenge.setId(nextId++);
             challenges.add(cchallenge);
@@ -30,7 +30,7 @@ public class ChallengeService {
         }
     }
 
-    public Challenge getChallenge(String month) {
+    public Challenge getChallenge(String month) { //@pathVariable - Captures the month variable from the URL.
         for(Challenge ch : challenges){
             if(ch.getMonth().equalsIgnoreCase(month)){
                 return ch;
@@ -39,7 +39,7 @@ public class ChallengeService {
         return null;
     }
 
-    public boolean updatedChallenge(long id, Challenge updatedChallenge) {
+    public boolean updatedChallenge(long id, Challenge updatedChallenge) { //@pathVariable - Captures id variable from the URL. @RequestBody Binds the request body to a Challenge object... from user
         for(Challenge ch : challenges){
             if(ch.getId()==id){
                 ch.setMonth(updatedChallenge.getMonth());
