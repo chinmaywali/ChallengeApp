@@ -159,7 +159,7 @@ DELETE /challenges/{id}
      - `DELETE /challenges/{id}`
      - Replace `{id}` with the challenge ID.
 
-3. **Optional**: Import the Postman collection for easy testing.
+
 
 
 ## Technologies Used
