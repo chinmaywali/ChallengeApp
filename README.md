@@ -118,6 +118,49 @@ DELETE /challenges/{id}
    ```bash
    ./mvnw spring-boot:run
    ```
+## Testing the API with Postman
+
+1. **Install Postman**: [Download here](https://www.postman.com/downloads/).
+
+2. **Test Endpoints**:
+
+   - **Get All Challenges**
+     - `GET /challenges`
+     - URL: `http://localhost:8080/challenges`
+
+   - **Get Challenge by Month**
+     - `GET /challenges/{month}`
+     - Replace `{month}` with the desired month.
+
+   - **Add Challenge**
+     - `POST /challenges`
+     - URL: `http://localhost:8080/challenges`
+     - Headers: `Content-Type: application/json`
+     - Body:
+       ```json
+       {
+         "month": "April",
+         "description": "Go hiking"
+       }
+       ```
+
+   - **Update Challenge**
+     - `PUT /challenges/{id}`
+     - Replace `{id}` with the challenge ID.
+     - Body:
+       ```json
+       {
+         "month": "May",
+         "description": "Learn a new skill"
+       }
+       ```
+
+   - **Delete Challenge**
+     - `DELETE /challenges/{id}`
+     - Replace `{id}` with the challenge ID.
+
+3. **Optional**: Import the Postman collection for easy testing.
+
 
 ## Technologies Used
 
